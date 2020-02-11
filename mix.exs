@@ -1,14 +1,19 @@
 defmodule TsAccess.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @repo_url "https://github.com/tino415/ts_access"
+
   def project do
     [
       app: :ts_access,
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      package: package(),
+      deps: deps(),
+      description: "A set of macros to generate setters and getters from TypedStruct"
     ]
   end
 
@@ -33,4 +38,11 @@ defmodule TsAccess.MixProject do
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => @repo_url}
+    ]
+  end
 end
