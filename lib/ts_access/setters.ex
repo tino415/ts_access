@@ -1,13 +1,20 @@
 defmodule TsAccess.Setters do
+  @moduledoc """
+  Generate set functions for module that is using `typedstruct`.
+  """
   defmacro __before_compile__(env) do
-    fields = Module.get_attribute(env.module, :fields, [])
-    types = Module.get_attribute(env.module, :types, [])
+    TsAccess.Setters.generate_setters(env.module)
+  end
+
+  def generate_setters(module) do
+    fields = Module.get_attribute(module, :fields, [])
+    types = Module.get_attribute(module, :types, [])
 
     Enum.map(fields, fn {field, _default} ->
       type = Keyword.get(types, field)
 
-      quote do
-        @spec unquote(field)(%unquote(env.module){}, unquote(type)) :: %unquote(env.module){}
+      quote generated: true do
+        @spec unquote(field)(%unquote(module){}, unquote(type)) :: %unquote(module){}
         def unquote(field)(struct, value) do
           Map.put(struct, unquote(field), value)
         end
