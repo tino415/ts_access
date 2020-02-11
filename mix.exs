@@ -30,7 +30,7 @@ defmodule TsAccess.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev], runtime: false},
       {:typed_struct, "~> 0.1.4", only: [:test]},
-      {:ex_doc, "~> 0.19", only: :docs, runtime: false}
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
