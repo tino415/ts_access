@@ -15,7 +15,7 @@ defmodule TsAccess.Setters do
 
       quote generated: true do
         @spec unquote(field)(%unquote(module){}, unquote(type)) :: %unquote(module){}
-        def unquote(field)(struct, value) do
+        def unquote(field)(%unquote{} = struct, value) do
           Map.put(struct, unquote(field), value)
         end
 

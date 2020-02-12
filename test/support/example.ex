@@ -2,8 +2,9 @@ defmodule Support.Example do
   @moduledoc """
   Example module for tests
   """
-  @before_compile TsAccess
   use TypedStruct
+
+  @before_compile TsAccess
 
   typedstruct do
     field(:name, :string)

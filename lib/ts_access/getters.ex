@@ -15,7 +15,7 @@ defmodule TsAccess.Getters do
 
       quote generated: true do
         @spec unquote(field)(%unquote(module){}) :: unquote(type)
-        def unquote(field)(struct) do
+        def unquote(field)(%unquote(module){} = struct) do
           Map.get(struct, unquote(field))
         end
       end

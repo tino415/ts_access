@@ -1,5 +1,5 @@
 defmodule TsAccessTest do
-  import Support.Example
+  alias Support.Example
 
   use ExUnit.Case
 

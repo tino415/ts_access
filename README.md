@@ -19,12 +19,12 @@ end
 ## Example
 
 Use `TsAccess` module as `@before_compile` and setters/getters will be generated
-for module:
+for module (@before_compile need to by set after `use TypedStruct`):
 
 ```elixir
 defmodule Example do
-  @before_compile TsAccess
   use TypedStruct
+  @before_compile TsAccess
 
   typedstruct do
     field(:name, :string)
