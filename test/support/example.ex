@@ -3,8 +3,7 @@ defmodule Support.Example do
   Example module for tests
   """
   use TypedStruct
-
-  @before_compile TsAccess
+  use TsAccess
 
   typedstruct do
     field(:name, :string)

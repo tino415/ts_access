@@ -2,6 +2,13 @@ defmodule TsAccess.Setters do
   @moduledoc """
   Generate set functions for module that is using `typedstruct`.
   """
+
+  defmacro __using__(_opts) do
+    quote do
+      @before_compile TsAccess.Setters
+    end
+  end
+
   defmacro __before_compile__(env) do
     TsAccess.Setters.generate_setters(env.module)
   end

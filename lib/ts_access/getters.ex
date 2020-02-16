@@ -2,6 +2,13 @@ defmodule TsAccess.Getters do
   @moduledoc """
   Generate setters for structure defined using `typedstruct`
   """
+
+  defmacro __using__(_opts) do
+    quote do
+      @before_compile TsAccess.Getters
+    end
+  end
+
   defmacro __before_compile__(env) do
     TsAccess.Getters.generate_getters(env.module)
   end

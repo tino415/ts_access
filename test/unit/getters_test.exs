@@ -3,8 +3,7 @@ defmodule TsAccess.GettersTest do
 
   defmodule Example do
     use TypedStruct
-
-    @before_compile TsAccess.Getters
+    use TsAccess.Getters
 
     typedstruct do
       field(:name, :string)

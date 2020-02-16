@@ -3,8 +3,7 @@ defmodule TsAccess.SettersTest do
 
   defmodule Example do
     use TypedStruct
-
-    @before_compile TsAccess.Setters
+    use TsAccess.Setters
 
     typedstruct do
       field(:name, :string)

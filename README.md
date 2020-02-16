@@ -18,13 +18,13 @@ end
 
 ## Example
 
-Use `TsAccess` module as `@before_compile` and setters/getters will be generated
-for module (@before_compile need to by set after `use TypedStruct`):
+Use `TsAccess` and setters/getters will be generated
+for module (`use TsAccess` need to be after `use TypedStruct`):
 
 ```elixir
 defmodule Example do
   use TypedStruct
-  @before_compile TsAccess
+  use TsAccess
 
   typedstruct do
     field(:name, :string)
@@ -42,4 +42,8 @@ iex> Example.name(%Example{name: "John Doe"})
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ts_access](https://hexdocs.pm/ts_access).
+
+## Change Log
+
+* 0.3.0 - added use interface
 
