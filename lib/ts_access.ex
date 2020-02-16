@@ -32,8 +32,8 @@ defmodule TsAccess do
 
   defmacro __before_compile__(env) do
     [
-      TsAccess.Getters.generate_getters(env.module),
-      TsAccess.Setters.generate_setters(env.module)
+      TsAccess.Getters.typedstruct(env.module),
+      TsAccess.Setters.typedstruct(env.module)
     ]
   end
 end

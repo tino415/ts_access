@@ -10,21 +10,30 @@ defmodule TsAccess.Getters do
   end
 
   defmacro __before_compile__(env) do
-    TsAccess.Getters.generate_getters(env.module)
+    TsAccess.Getters.typedstruct(env.module)
   end
 
-  def generate_getters(module) do
+  defmacro defgetter(field, type \\ nil) do
+    quote do
+      @spec unquote(field)(%__MODULE__{}) :: unquote(type)
+      def unquote(field)(%__MODULE__{unquote(field) => value}), do: value
+    end
+  end
+
+  def typedstruct(module) do
     fields = Module.get_attribute(module, :fields, [])
     types = Module.get_attribute(module, :types, [])
 
+    generate_getters(module, fields, types)
+  end
+
+  def generate_getters(module, fields, types) do
     Enum.map(fields, fn {field, _default} ->
       type = Keyword.get(types, field)
 
       quote generated: true do
         @spec unquote(field)(%unquote(module){}) :: unquote(type)
-        def unquote(field)(%unquote(module){} = struct) do
-          Map.get(struct, unquote(field))
-        end
+        def unquote(field)(%unquote(module){unquote(field) => value}), do: value
       end
     end)
   end
