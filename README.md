@@ -45,6 +45,7 @@ be found at [https://hexdocs.pm/ts_access](https://hexdocs.pm/ts_access).
 
 ## Change Log
 
+* 0.5.0 - added explicit use mode
 * 0.3.0 - added use interface
 * 0.4.0 - improve generated functions, defgetter/defsetter macros
 
