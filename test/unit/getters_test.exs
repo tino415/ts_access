@@ -29,17 +29,22 @@ defmodule TsAccess.GettersTest do
     end
   end
 
-  describe "defgetter" do
-    defmodule Example2 do
-      require TsAccess.Getters
+  describe "explicit" do
+    defmodule Explicit do
+      use TsAccess.Getters, explicit: true
 
-      defstruct [:name]
+      defstruct [:gettable, :ungettable]
 
-      TsAccess.Getters.defgetter(:name)
+      defgetter(:gettable)
     end
 
-    test "getter generateod" do
-      assert "test" == Example2.name(%Example2{name: "test"})
+    test "only defined" do
+      assert "test" == Explicit.gettable(%Explicit{gettable: "test"})
+
+      assert_raise(
+        UndefinedFunctionError,
+        fn -> "test" == Explicit.ungettable(%Explicit{ungettable: "test"}) end
+      )
     end
   end
 end

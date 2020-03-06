@@ -1,7 +1,7 @@
 defmodule TsAccess.MixProject do
   use Mix.Project
 
-  @version "0.4.0"
+  @version "0.5.0"
   @repo_url "https://github.com/tino415/ts_access"
 
   def project do
@@ -13,7 +13,7 @@ defmodule TsAccess.MixProject do
       start_permanent: Mix.env() == :prod,
       package: package(),
       deps: deps(),
-      description: "A set of macros to generate setters and getters from TypedStruct"
+      description: "A set of macros to generate setters and getters for struct"
     ]
   end
 

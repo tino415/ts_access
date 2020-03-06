@@ -25,17 +25,22 @@ defmodule TsAccess.SettersTest do
     end
   end
 
-  describe "defsetter" do
-    defmodule Example2 do
-      require TsAccess.Setters
+  describe "explicit" do
+    defmodule Explicit do
+      use TsAccess.Setters, explicit: true
 
-      defstruct [:name]
+      defstruct [:settable, :unsettable]
 
-      TsAccess.Setters.defsetter(:name)
+      defsetter(:settable)
     end
 
-    test "generated setter" do
-      assert %Example2{name: "doe"} == Example2.name(%Example2{}, "doe")
+    test "only defined" do
+      assert %Explicit{settable: "doe"} == Explicit.settable(%Explicit{}, "doe")
+
+      assert_raise(
+        UndefinedFunctionError,
+        fn -> %Explicit{unsettable: "doe"} == Explicit.unsettable(%Explicit{}, "doe") end
+      )
     end
   end
 end
