@@ -1,7 +1,7 @@
 defmodule TsAccess.MixProject do
   use Mix.Project
 
-  @version "0.5.0"
+  @version "0.6.0"
   @repo_url "https://github.com/tino415/ts_access"
 
   def project do

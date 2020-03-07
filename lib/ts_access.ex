@@ -88,7 +88,8 @@ defmodule TsAccess do
   defmacro __before_compile__(%Macro.Env{module: module}) do
     [
       TsAccess.Getters.__defgetters__(module),
-      TsAccess.Setters.__defsetters__(module)
+      TsAccess.Setters.__defsetters__(module),
+      TsAccess.Lenses.__deflenses__(module)
     ]
   end
 
