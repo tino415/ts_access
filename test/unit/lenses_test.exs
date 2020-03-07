@@ -8,15 +8,16 @@ defmodule TsAccess.LensesTest do
 
       typedstruct do
         field(:name, :string)
-        field(:online?, boolean())
+        field(:online?, boolean(), default: true)
       end
     end
 
     test "containing all functions" do
-      example = %Example{name: "John", online?: true}
+      example = %Example{name: "John"}
 
       assert "John" == get_in(example, [Example.name_lens()])
-      assert get_in(example, [apply(Example, :"online?_lens", [])])
+      assert "John" == get_in(example, [Example.name()])
+      assert get_in(example, [Example.online?])
     end
   end
 end

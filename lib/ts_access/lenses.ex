@@ -1,7 +1,8 @@
 defmodule TsAccess.Lenses do
   @moduledoc """
-  Generate field_lens functions that can be used 
-  with elixir Access behaviour 
+  Generate field functions that can be used 
+  with elixir Access behaviour. Also functions field_lens are 
+  generated, but these are deprecated
 
   ## EXAMPLES
 
@@ -10,13 +11,16 @@ defmodule TsAccess.Lenses do
     use TsAccess.Lenses
 
     defstruct [
-      :name
+      :name,
+      online?: true
     ]
   end
 
-  iex> get_in(Example{name: "Testovic"}, [Example.name_lens])
+  iex> get_in(%Example{name: "Testovic"}, [Example.name])
   "Testovic"
   ```
+  iex> get_in(%Example{}, [Example.online?])
+  true
   """
   import TsAccess.Support, only: [fields: 1]
 
@@ -35,15 +39,20 @@ defmodule TsAccess.Lenses do
   end
 
   def __deflenses__(fields) do
-    Enum.map(fields, fn {field, _default} ->
-      __deflens__(field)
+    Enum.map(fields, fn {field, default} ->
+      __deflens__(field, default)
     end)
   end
 
-  def __deflens__(field) do
+  def __deflens__(field, default \\ nil) do
     quote generated: true do
+      @deprecated "Use just #{unquote(field)}(), lens postfix is deprecated"
       def unquote(:"#{field}_lens")() do
         Access.key(unquote(field))
+      end
+
+      def unquote(field)() do
+        Access.key(unquote(field), unquote(default))
       end
     end
   end
