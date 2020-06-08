@@ -38,6 +38,9 @@ defmodule TsAccess.Getters do
 
   def __defgetter__(field, type) do
     quote generated: true do
+      @doc """
+      Getter for #{unquote(field)}
+      """
       @spec unquote(field)(%__MODULE__{}) :: unquote(type)
       def unquote(field)(%__MODULE__{unquote(field) => value}), do: value
     end

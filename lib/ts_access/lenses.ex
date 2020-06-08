@@ -46,11 +46,10 @@ defmodule TsAccess.Lenses do
 
   def __deflens__(field, default \\ nil) do
     quote generated: true do
-      @deprecated "Use just #{unquote(field)}(), lens postfix is deprecated"
-      def unquote(:"#{field}_lens")() do
-        Access.key(unquote(field))
-      end
-
+      @doc """
+      Lens for #{unquote(field)}, see `Access`
+      """
+      @spec unquote(field)() :: Access.access_fun(struct(), term())
       def unquote(field)() do
         Access.key(unquote(field), unquote(default))
       end

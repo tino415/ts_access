@@ -1,7 +1,7 @@
 defmodule TsAccess.MixProject do
   use Mix.Project
 
-  @version "0.7.0"
+  @version "1.0.0"
   @repo_url "https://github.com/tino415/ts_access"
 
   def project do
@@ -28,7 +28,7 @@ defmodule TsAccess.MixProject do
   defp deps do
     [
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.0.0", only: [:dev], runtime: false},
       {:typed_struct, "~> 0.1.4", only: [:test]},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
