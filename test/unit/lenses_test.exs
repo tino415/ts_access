@@ -15,9 +15,8 @@ defmodule TsAccess.LensesTest do
     test "containing all functions" do
       example = %Example{name: "John"}
 
-      assert "John" == get_in(example, [Example.name_lens()])
       assert "John" == get_in(example, [Example.name()])
-      assert get_in(example, [Example.online?])
+      assert get_in(example, [Example.online?()])
     end
   end
 end

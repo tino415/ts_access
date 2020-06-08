@@ -38,6 +38,9 @@ defmodule TsAccess.Setters do
 
   def __defsetter__(field, type) do
     quote generated: true do
+      @doc """
+      Setter for #{unquote(field)}
+      """
       @spec unquote(field)(%__MODULE__{}, unquote(type)) :: %__MODULE__{}
       def unquote(field)(%__MODULE__{} = struct, value) do
         %__MODULE__{struct | unquote(field) => value}

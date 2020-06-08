@@ -11,7 +11,7 @@ by adding `ts_access` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ts_access, "~> 0.1.0"}
+    {:ts_access, "~> 1.0.0"}
   ]
 end
 ```
@@ -45,6 +45,7 @@ be found at [https://hexdocs.pm/ts_access](https://hexdocs.pm/ts_access).
 
 ## Change Log
 
+* 1.0.0 - removed `_lens` generated functions, added `@doc` to generated functions
 * 0.7.0 - remove lenses function postfix `_lens`, generated lenses consider default values
 * 0.6.0 - added lenses
 * 0.5.0 - added explicit use mode
