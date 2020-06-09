@@ -1,8 +1,7 @@
 defmodule TsAccess.Lenses do
   @moduledoc """
   Generate field functions that can be used 
-  with elixir Access behaviour. Also functions field_lens are 
-  generated, but these are deprecated
+  with elixir `Access` behaviour. 
 
   ## EXAMPLES
 
@@ -18,9 +17,10 @@ defmodule TsAccess.Lenses do
 
   iex> get_in(%Example{name: "Testovic"}, [Example.name])
   "Testovic"
-  ```
+
   iex> get_in(%Example{}, [Example.online?])
   true
+  ```
   """
   import TsAccess.Support, only: [fields: 1]
 
